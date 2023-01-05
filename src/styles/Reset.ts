@@ -58,8 +58,22 @@ export const ResetStyles = createGlobalStyle`
 	    text-decoration: none;
 	};
 
+	button, input{
+		color: var(--color-tertiary);
+		border: none;
+	};
+
 	button{
 		cursor: pointer;
-		border: none;
+		border-radius: var(--radius);
+	};
+
+	input{
+
+		:hover{
+			border:none;
+			outline: none;
+		}
+
 	};
 ` 

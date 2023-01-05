@@ -5,9 +5,9 @@ export const GlobalStyles = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&display=swap');
   
     :root{
-      --color-primary-1: #0B0D40;
-      --color-primary-2: #008BDA;
-      --color-primary-3: #F7F7F7;
+      --color-primary: #0B0D40;
+      --color-secondary: #008BDA;
+      --color-tertiary: #F7F7F7;
      
       --color-sucess: #168821;
       --color-negative: #E60000;
@@ -16,11 +16,11 @@ export const GlobalStyles = createGlobalStyle`
 
       --color-screen-modal:#008ada2a;
 
-      --radius:30px;
+      --radius:1.875rem;
 
-      --font-size-1: 22px;
-      --font-size-2: 16px;
-      --font-size-3: 14px;
+      --font-size-1: 1.375rem;
+      --font-size-2: 1rem;
+      --font-size-3: 0.875rem;
      
       --font-weight-1: 600;
       --font-weight-2: 700;
