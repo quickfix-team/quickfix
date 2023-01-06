@@ -20,9 +20,9 @@ export const ButtonSecondaryStyles = styled(DefaultButton)`
 `;
 
 export const ButtonDisabledStyles = styled(EnableDisableButton)`
-   background-color:var(--color-negative);
+    background-color: var(--color-negative);
 `;
 
-export const ButtonActivatedStyles =  styled(EnableDisableButton)`
-    background-color:var(--color-sucess);
+export const ButtonActivatedStyles = styled(EnableDisableButton)`
+    background-color: var(--color-sucess);
 `;

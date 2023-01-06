@@ -23,5 +23,4 @@ export const ContainerContactStyles = styled(ContainerPattern)`
     max-width: 22.5rem;
 `;
 
-export const ContainerAddressStyles = styled(ContainerContactStyles)`
-`;
+export const ContainerAddressStyles = styled(ContainerContactStyles)``;

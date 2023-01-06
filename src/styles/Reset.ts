@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'; 
+import { createGlobalStyle } from 'styled-components';
 
 export const ResetStyles = createGlobalStyle`
 
@@ -76,4 +76,4 @@ export const ResetStyles = createGlobalStyle`
 		}
 
 	};
-` 
+`;

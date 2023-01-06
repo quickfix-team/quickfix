@@ -1,5 +1,3 @@
 export const FormRegister = () => {
-    return (
-        <form>FormRegister</form>
-    );
+    return <form>FormRegister</form>;
 };

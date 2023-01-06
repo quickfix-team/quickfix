@@ -1,1 +1,1 @@
-export const loginSchema = {}
+export const loginSchema = {};

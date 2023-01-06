@@ -1,5 +1,3 @@
 export const FormLogin = () => {
-    return (
-        <form></form>
-    );
+    return <form></form>;
 };
