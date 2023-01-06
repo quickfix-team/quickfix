@@ -7,11 +7,5 @@ interface IUserProps {
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }: IUserProps) => {
-    return (
-        <UserContext.Provider value={{
-
-        }}>
-            {children}
-        </UserContext.Provider>
-    );
+    return <UserContext.Provider value={{}}>{children}</UserContext.Provider>;
 };

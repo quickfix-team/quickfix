@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'; 
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle` 
 
@@ -32,5 +32,4 @@ export const GlobalStyles = createGlobalStyle`
         font-family: 'Nunito', sans-serif;
     }
   
-` 
-
+`;

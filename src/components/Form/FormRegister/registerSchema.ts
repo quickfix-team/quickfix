@@ -1,1 +1,1 @@
-export const registerSchema = {}
+export const registerSchema = {};
