@@ -7,9 +7,9 @@ import { App } from './App';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <>
-        <GlobalStyles/>
-        <ResetStyles/>
         <React.StrictMode>
+            <GlobalStyles/>
+            <ResetStyles/>
             <App/>
         </React.StrictMode>
     </>
