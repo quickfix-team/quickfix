@@ -1,3 +1,4 @@
+import { Link as LinkButton } from 'react-router-dom';
 import styled from 'styled-components';
 
 const DefaultButton = styled.button`
@@ -25,4 +26,8 @@ export const ButtonDisabledStyles = styled(EnableDisableButton)`
 
 export const ButtonActivatedStyles = styled(EnableDisableButton)`
     background-color: var(--color-sucess);
+`;
+
+export const Link = styled(LinkButton)`
+    color: var(--color-tertiary);
 `;
