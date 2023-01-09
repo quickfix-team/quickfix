@@ -1,5 +1,10 @@
-import { ButtonPrimaryStyles } from '../../styles/Buttons';
+import { FormAddress } from '../../components/Form/FormAddress';
+import { FormContact } from '../../components/Form/FormContact';
+import { FormImgProfile } from '../../components/Form/FormImgProfile';
+import { ContainerPattern } from '../../styles/Containers';
 import { ProfileStyles } from './style';
+import { EnableDisableButton } from '../../styles/Buttons';
+
 
 export const Profile = () => {
     return (
@@ -18,9 +23,22 @@ export const Profile = () => {
                         <p>CNPJ: xx.xxx.xxx/0001-xx</p>
                     </div>
                 </div>
-                <form>
-                    <ButtonPrimaryStyles>Inserir Imagem</ButtonPrimaryStyles>
-                </form>
+                <FormImgProfile />
+            </section>
+            <section>
+                <div>
+                    <div>
+                        <ContainerPattern>
+                            <FormAddress />
+                        </ContainerPattern>
+                        <ContainerPattern>
+                            <FormContact />
+                        </ContainerPattern>
+                    </div>
+                    <EnableDisableButton color='var(--color-negative)'>
+                        Desativado
+                    </EnableDisableButton>
+                </div>
             </section>
         </ProfileStyles>
     );
