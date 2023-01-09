@@ -18,6 +18,4 @@ export const contactSchema = yup.object().shape({
     email: yup
         .string()
         .required('Email obrigatório')
-        .min(64, 'O email precisa ter no mínimo 64 caracteres')
-        .max(255, 'O eemail pode ter no máximo 255 caracteres'),
 });

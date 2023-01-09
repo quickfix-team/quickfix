@@ -24,6 +24,7 @@ export const FormAddress = () => {
 
     const onSubmitFunction = (data: any) => console.log(data);
 
+
     return (
         <form noValidate onSubmit={handleSubmit(onSubmitFunction)}>
             <h2>Endereço</h2>

@@ -3,6 +3,7 @@ import { TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { contactSchema } from './contactSchema';
+import { sendPostContact } from '../../../pages/Profile/api';
 
 export const FormContact = () => {
     interface iData {
@@ -21,7 +22,20 @@ export const FormContact = () => {
         resolver: yupResolver(contactSchema),
     });
 
-    const onSubmitFunction = (data: any) => console.log(data);
+    const onSubmitFunction = (dataContact: iData) => {
+        console.log(dataContact)
+        const data = {
+            email: dataContact.email,
+            id: 1,
+            instagram: dataContact.instagram,
+            phone: dataContact.tel,
+            profileId: 1,
+            telegram: dataContact.telegram,
+            whatsapp: dataContact.whatsApp,
+        };
+
+        sendPostContact(data)
+    };
 
     return (
         <form noValidate onSubmit={handleSubmit(onSubmitFunction)}>
