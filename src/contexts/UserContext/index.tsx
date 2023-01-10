@@ -1,6 +1,7 @@
 import { createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { ILoginForm } from '../../components/Form/FormLogin';
 import { IRegisterForm } from '../../components/Form/FormRegister';
 import { instance } from '../../services';
 
@@ -9,7 +10,8 @@ interface IUserProps {
 }
 
 interface IUserContext {
-    registerRequest: (data: IRegisterForm) => Promise<void>;
+    registerRequest: (formData: IRegisterForm) => Promise<void>;
+    loginRequest: (formData: ILoginForm) => Promise<void>;
 }
 
 export const UserContext = createContext({} as IUserContext);
@@ -17,11 +19,23 @@ export const UserContext = createContext({} as IUserContext);
 export const UserProvider = ({ children }: IUserProps) => {
     const navigate = useNavigate();
 
-    const registerRequest = async (data: IRegisterForm) => {
+    const registerRequest = async (formData: IRegisterForm) => {
         try {
-            await instance.post('/register', data);
+            await instance.post('/register', formData);
             // toast.success('Conta criada com sucesso!');
             navigate('/login');
+        } catch (err) {
+            // toast.error('Ops! Algo deu errado.');
+        }
+    };
+
+    const loginRequest = async (formData: ILoginForm) => {
+        try {
+            const { data } = await instance.post('/login', formData);
+            // toast.success('Login efetuado!');
+            localStorage.clear();
+            localStorage.setItem('userToken', data.accessToken);
+            navigate('/profile');
         } catch (err) {
             // toast.error('Ops! Algo deu errado.');
         }
@@ -31,6 +45,7 @@ export const UserProvider = ({ children }: IUserProps) => {
         <UserContext.Provider
             value={{
                 registerRequest,
+                loginRequest,
             }}
         >
             {children}
