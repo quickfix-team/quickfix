@@ -31,3 +31,13 @@ export const ButtonActivatedStyles = styled(EnableDisableButton)`
 export const Link = styled(LinkButton)`
     color: var(--color-tertiary);
 `;
+
+export const MenuButon = styled.button`
+    background: none;
+
+    > svg {
+        height: auto;
+        width: 34px;
+        color: var(--color-secondary);
+    }
+`;
