@@ -3,9 +3,12 @@ import { TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { contactSchema } from './contactSchema';
-import { sendPostContact } from '../../../pages/Profile/api';
+import { ProfileContext } from '../../../contexts/Profile';
+import { useContext } from 'react';
 
 export const FormContact = () => {
+    const { sendPostContact } = useContext(ProfileContext);
+
     interface iData {
         whatsApp: string;
         telegram: string;
@@ -23,18 +26,7 @@ export const FormContact = () => {
     });
 
     const onSubmitFunction = (dataContact: iData) => {
-        console.log(dataContact)
-        const data = {
-            email: dataContact.email,
-            id: 1,
-            instagram: dataContact.instagram,
-            phone: dataContact.tel,
-            profileId: 1,
-            telegram: dataContact.telegram,
-            whatsapp: dataContact.whatsApp,
-        };
-
-        sendPostContact(data)
+        sendPostContact(dataContact);
     };
 
     return (
@@ -48,8 +40,10 @@ export const FormContact = () => {
                 fullWidth
                 InputProps={{ disableUnderline: true }}
                 {...register('whatsApp')}
+                helperText={errors.whatsApp?.message}
+                error={!!errors.whatsApp}
             />
-            {errors.whatsApp?.message && <p aria-label='error'>{errors.whatsApp?.message}</p>}
+
             <TextField
                 type='text'
                 label='Telegram:'
@@ -58,8 +52,9 @@ export const FormContact = () => {
                 fullWidth
                 InputProps={{ disableUnderline: true }}
                 {...register('telegram')}
+                helperText={errors.telegram?.message}
+                error={!!errors.telegram}
             />
-            {errors.telegram?.message && <p aria-label='error'>{errors.telegram?.message}</p>}
             <TextField
                 type='text'
                 label='Instagram:'
@@ -68,8 +63,9 @@ export const FormContact = () => {
                 fullWidth
                 InputProps={{ disableUnderline: true }}
                 {...register('instagram')}
+                helperText={errors.instagram?.message}
+                error={!!errors.instagram}
             />
-            {errors.instagram?.message && <p aria-label='error'>{errors.instagram?.message}</p>}
             <TextField
                 type='text'
                 label='Tel:'
@@ -78,8 +74,9 @@ export const FormContact = () => {
                 fullWidth
                 InputProps={{ disableUnderline: true }}
                 {...register('tel')}
+                helperText={errors.tel?.message}
+                error={!!errors.tel}
             />
-            {errors.tel?.message && <p aria-label='error'>{errors.tel?.message}</p>}
             <TextField
                 type='text'
                 label='Email:'
@@ -88,8 +85,9 @@ export const FormContact = () => {
                 fullWidth
                 InputProps={{ disableUnderline: true }}
                 {...register('email')}
+                helperText={errors.email?.message}
+                error={!!errors.email}
             />
-            {errors.email?.message && <p aria-label='error'>{errors.email?.message}</p>}
             <ButtonPrimaryStyles>Inserir Contato</ButtonPrimaryStyles>
         </form>
     );

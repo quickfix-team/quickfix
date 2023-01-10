@@ -4,34 +4,11 @@ import { FormImgProfile } from '../../components/Form/FormImgProfile';
 import { ContainerPattern, ContainerGlobalStyles } from '../../styles/Containers';
 import { ProfileStyles } from './style';
 import { EnableDisableButton } from '../../styles/Buttons';
-import { useEffect, useState } from 'react';
-import { sendGetProfile, sendGetContact } from './api';
+import { ProfileContext } from '../../contexts/Profile';
+import { useContext } from 'react';
 
 export const Profile = () => {
-    const [profile, setProfile] = useState<any>([]);
-    const [contact, setContact] = useState<any>([]);
-
-    useEffect(() => {
-        const callback = async () => {
-            const profileData = await sendGetProfile();
-            setProfile(profileData.data[1]);
-
-            const contacts = await sendGetContact();
-            setContact(contacts.data[0]);
-
-            const user = {
-                id: profileData.data[1].id,
-                profileId: profileData.data[1].profileId,
-            };
-
-            localStorage.setItem('user', JSON.stringify(user));
-        };
-
-        callback();
-    }, []);
-
-    console.log(profile);
-    console.log(contact);
+    const { contact, profile } = useContext(ProfileContext);
 
     return (
         <ContainerGlobalStyles>

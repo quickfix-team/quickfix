@@ -4,12 +4,15 @@ import { ContainerPattern } from '../../../styles/Containers';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { imgProfileSchema } from './imgProfileSchema';
+import { ProfileContext } from '../../../contexts/Profile';
+import { useContext } from 'react';
 
 export const FormImgProfile = () => {
+    const { sendPostImgProfile } = useContext(ProfileContext);
 
-    interface iData{
+    interface iData {
         src: string;
-    };
+    }
 
     const {
         register,
@@ -19,7 +22,9 @@ export const FormImgProfile = () => {
         resolver: yupResolver(imgProfileSchema),
     });
 
-    const onSubmitFunction = (data: any) => console.log(data);
+    const onSubmitFunction = async (data: iData) => {
+        sendPostImgProfile(data.src);
+    };
 
     return (
         <form noValidate onSubmit={handleSubmit(onSubmitFunction)}>
@@ -32,8 +37,9 @@ export const FormImgProfile = () => {
                     fullWidth
                     InputProps={{ disableUnderline: true }}
                     {...register('src')}
+                    helperText={errors.src?.message}
+                    error={!!errors.src}
                 />
-                {errors.src?.message && <p aria-label='error'>{errors.src?.message}</p>}
             </ContainerPattern>
             <ButtonPrimaryStyles>Inserir Imagem</ButtonPrimaryStyles>
         </form>

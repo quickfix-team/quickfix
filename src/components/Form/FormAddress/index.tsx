@@ -3,16 +3,20 @@ import { TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { addressSchema } from './addressSchema';
+import { ProfileContext } from '../../../contexts/Profile';
+import { useContext } from 'react';
+
+interface iData {
+    street: string;
+    district: string;
+    number: string;
+    city: string;
+    state: string;
+}
 
 export const FormAddress = () => {
 
-    interface iData{
-        street: string;
-        district: string;
-        number: string;
-        city: string;
-        state: string;
-    };
+    const { sendPostAndress } = useContext(ProfileContext);
 
     const {
         register,
@@ -22,8 +26,11 @@ export const FormAddress = () => {
         resolver: yupResolver(addressSchema),
     });
 
-    const onSubmitFunction = (data: any) => console.log(data);
+    const onSubmitFunction = async (data: iData) => {
+        const resp = await sendPostAndress(data);
 
+        console.log(resp);
+    };
 
     return (
         <form noValidate onSubmit={handleSubmit(onSubmitFunction)}>
@@ -36,8 +43,9 @@ export const FormAddress = () => {
                 fullWidth
                 InputProps={{ disableUnderline: true }}
                 {...register('street')}
+                helperText={errors.street?.message}
+                error={!!errors.street}
             />
-            {errors.street?.message && <p aria-label='error'>{errors.street?.message}</p>}
             <TextField
                 type='text'
                 label='Bairro:'
@@ -46,8 +54,9 @@ export const FormAddress = () => {
                 fullWidth
                 InputProps={{ disableUnderline: true }}
                 {...register('district')}
+                helperText={errors.district?.message}
+                error={!!errors.district}
             />
-            {errors.district?.message && <p aria-label='error'>{errors.district?.message}</p>}
             <TextField
                 type='text'
                 label='Numero:'
@@ -56,8 +65,9 @@ export const FormAddress = () => {
                 fullWidth
                 InputProps={{ disableUnderline: true }}
                 {...register('number')}
+                helperText={errors.number?.message}
+                error={!!errors.number}
             />
-            {errors.number?.message && <p aria-label='error'>{errors.number?.message}</p>}
             <TextField
                 type='text'
                 label='Cidade:'
@@ -66,8 +76,9 @@ export const FormAddress = () => {
                 fullWidth
                 InputProps={{ disableUnderline: true }}
                 {...register('city')}
+                helperText={errors.city?.message}
+                error={!!errors.city}
             />
-            {errors.city?.message && <p aria-label='error'>{errors.city?.message}</p>}
             <TextField
                 type='text'
                 label='Estado:'
@@ -76,8 +87,9 @@ export const FormAddress = () => {
                 fullWidth
                 InputProps={{ disableUnderline: true }}
                 {...register('state')}
+                helperText={errors.state?.message}
+                error={!!errors.state}
             />
-            {errors.state?.message && <p aria-label='error'>{errors.state?.message}</p>}
             <ButtonPrimaryStyles>Inserir Endereço</ButtonPrimaryStyles>
         </form>
     );
