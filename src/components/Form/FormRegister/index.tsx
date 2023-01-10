@@ -1,8 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { TextField } from '@mui/material';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { UserContext } from '../../../contexts/UserContext';
 import { ButtonPrimaryStyles } from '../../../styles/Buttons';
 import { registerSchema } from './registerSchema';
 
@@ -16,6 +17,7 @@ export interface IRegisterForm {
 
 export const FormRegister = () => {
     const [val, setVal] = useState('');
+    const { registerRequest } = useContext(UserContext);
     const {
         register,
         handleSubmit,
@@ -36,7 +38,7 @@ export const FormRegister = () => {
 
     const handleRequest = (data: IRegisterForm) => {
         delete data.confirmPwd;
-        console.log(data);
+        registerRequest(data);
     };
 
     return (
