@@ -1,7 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { TextField } from '@mui/material';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { UserContext } from '../../../contexts/UserContext';
 import { ButtonPrimaryStyles } from '../../../styles/Buttons';
 import { loginSchema } from './loginSchema';
 
@@ -11,21 +13,18 @@ export interface ILoginForm {
 }
 
 export const FormLogin = () => {
+    const { loginRequest } = useContext(UserContext);
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm<ILoginForm>({
         mode: 'onChange',
-        resolver: yupResolver(loginSchema)
+        resolver: yupResolver(loginSchema),
     });
 
-    const handleRequest = (data: ILoginForm) => {
-        console.log(data);
-    };
-
     return (
-        <form noValidate onSubmit={handleSubmit(handleRequest)}>
+        <form noValidate onSubmit={handleSubmit(loginRequest)}>
             <TextField
                 type='email'
                 label='Email'
