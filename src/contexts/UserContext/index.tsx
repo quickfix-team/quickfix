@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { ILoginForm } from '../../components/Form/FormLogin';
 import { IRegisterForm } from '../../components/Form/FormRegister';
@@ -22,22 +23,22 @@ export const UserProvider = ({ children }: IUserProps) => {
     const registerRequest = async (formData: IRegisterForm) => {
         try {
             await instance.post('/register', formData);
-            // toast.success('Conta criada com sucesso!');
+            toast.success('Conta criada com sucesso!');
             navigate('/login');
         } catch (err) {
-            // toast.error('Ops! Algo deu errado.');
+            toast.error('Ops! Algo deu errado.');
         }
     };
 
     const loginRequest = async (formData: ILoginForm) => {
         try {
             const { data } = await instance.post('/login', formData);
-            // toast.success('Login efetuado!');
+            toast.success('Login efetuado!');
             localStorage.clear();
             localStorage.setItem('userToken', data.accessToken);
             navigate('/profile');
         } catch (err) {
-            // toast.error('Ops! Algo deu errado.');
+            toast.error('Ops! Algo deu errado.');
         }
     };
 
