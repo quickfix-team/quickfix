@@ -31,8 +31,8 @@ export const Home = () => {
                         </ContainerPattern>
                     </Link>
                 </main>
-                <Footer />
             </StyledDiv>
+            <Footer />
         </>
     );
 };
