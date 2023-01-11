@@ -12,10 +12,7 @@ export const Home = () => {
             <StyledDiv>
                 <main>
                     <h1>Seu celular quebrou?</h1>
-                    <img
-                        src='https://static8.depositphotos.com/1157310/938/v/450/depositphotos_9382937-stock-illustration-mobile-phone-man.jpg'
-                        alt='img-home'
-                    />
+                    <img src='https://i.ibb.co/jbSwSrN/cell.png' alt='img-home' />
                     <p>
                         Não fique preocupado, o seu problema tem solução, oferecemos o melhor
                         serviço tecnico de celular do brasil e com um orçamento que cabe no seu

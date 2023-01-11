@@ -1,11 +1,13 @@
 import { Footer } from '../../components/Footer';
 import { FormRegister } from '../../components/Form/FormRegister';
+import { Header } from '../../components/Header';
 import { Link } from '../../styles/Buttons';
 import { FormCard } from '../../styles/Cards';
 
 export const Register = () => {
     return (
         <>
+            <Header />
             <FormCard>
                 <div>
                     <h2>Cadastro</h2>

@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-
 import { Footer } from '../../components/Footer';
 import { FormAddress } from '../../components/Form/FormAddress';
 import { FormContact } from '../../components/Form/FormContact';
 import { FormImgProfile } from '../../components/Form/FormImgProfile';
+import { Header } from '../../components/Header';
 import { ProfileContext } from '../../contexts/Profile';
 import { ButtonPrimaryStyles } from '../../styles/Buttons';
 import { EnableDisableButton } from '../../styles/Buttons';
@@ -15,6 +15,7 @@ export const Profile = () => {
 
     return (
         <>
+            <Header />
             <ContainerGlobalStyles>
                 <ProfileStyles>
                     <section>
