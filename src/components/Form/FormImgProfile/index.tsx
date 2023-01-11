@@ -22,7 +22,7 @@ export const FormImgProfile = () => {
         resolver: yupResolver(imgProfileSchema),
     });
 
-    const onSubmitFunction = async (data: iData) => {
+    const onSubmitFunction = (data: iData) => {
         sendPostImgProfile(data.src);
     };
 

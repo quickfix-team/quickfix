@@ -15,7 +15,6 @@ interface iData {
 }
 
 export const FormAddress = () => {
-
     const { sendPostAndress } = useContext(ProfileContext);
 
     const {
@@ -26,10 +25,8 @@ export const FormAddress = () => {
         resolver: yupResolver(addressSchema),
     });
 
-    const onSubmitFunction = async (data: iData) => {
-        const resp = await sendPostAndress(data);
-
-        console.log(resp);
+    const onSubmitFunction = (data: iData) => {
+        sendPostAndress(data);
     };
 
     return (

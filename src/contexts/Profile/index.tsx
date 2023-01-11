@@ -121,7 +121,7 @@ export const ProfileProvider = ({ children }: iChildren) => {
 
         const message = await resp();
         setProfile(message.data);
-        console.log(message);
+        return message;
     };
 
     const sendPostContact = async (dataContact: iDataContact) => {
@@ -155,7 +155,6 @@ export const ProfileProvider = ({ children }: iChildren) => {
 
         const message = await resp();
         setContact(message.data);
-        console.log(message);
     };
 
     const sendPostAndress = async (dataAndress: iDataAndress) => {
@@ -188,7 +187,7 @@ export const ProfileProvider = ({ children }: iChildren) => {
         };
 
         const message = await resp();
-        console.log(message);
+        return message;
     };
 
     const [profile, setProfile] = useState<Array<object>>([]);
