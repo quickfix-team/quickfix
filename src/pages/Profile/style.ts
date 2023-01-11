@@ -29,6 +29,7 @@ export const ProfileStyles = styled(StandardOrganization)`
                     height: 8.4375rem;
                     background-color: var(--color-primary);
                     border-radius: var(--radius);
+                    object-fit: contain;
                 }
             }
 

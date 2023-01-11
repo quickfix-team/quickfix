@@ -41,10 +41,11 @@ export const ProfileContext = createContext({} as iDatas);
 export const ProfileProvider = ({ children }: iChildren) => {
     const sendGetProfile = async () => {
         const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
 
         const resp = async () => {
             const response = await instance
-                .get('/profiles/1', { headers: { Authorization: `Bearer ${token}` } })
+                .get(`/profiles/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
                 .catch(function (error) {
                     const currentError = error as AxiosError;
                     if (currentError.response) {
@@ -61,9 +62,11 @@ export const ProfileProvider = ({ children }: iChildren) => {
     const sendGetContact = async () => {
         const token = localStorage.getItem('token');
 
+        const userId = localStorage.getItem('userId');
+
         const resp = async () => {
             const response = await instance
-                .get('/contacts/1', { headers: { Authorization: `Bearer ${token}` } })
+                .get(`/contacts/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
                 .catch(function (error) {
                     const currentError = error as AxiosError;
                     if (currentError.response) {
@@ -80,9 +83,11 @@ export const ProfileProvider = ({ children }: iChildren) => {
     const sendGetAndress = async () => {
         const token = localStorage.getItem('token');
 
+        const userId = localStorage.getItem('userId');
+
         const resp = async () => {
             const response = await instance
-                .get('/adresses/1', { headers: { Authorization: `Bearer ${token}` } })
+                .get(`/adresses/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
                 .catch(function (error) {
                     const currentError = error as AxiosError;
                     if (currentError.response) {
@@ -98,27 +103,44 @@ export const ProfileProvider = ({ children }: iChildren) => {
 
     const sendPostImgProfile = async (src: string) => {
         const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
 
-        let user = await sendGetProfile();
-        user = user.data;
+        const profile = await sendGetProfile();
 
         const data = {
-            userId: user.userId,
-            name: user.name,
+            userId: userId,
+            name: profile.name,
             imagem: src,
         };
 
-        const resp = async () => {
-            const response = await instance
-                .put('/profiles/1', data, { headers: { Authorization: `Bearer ${token}` } })
-                .catch(function (error) {
-                    const currentError = error as AxiosError;
-                    if (currentError.response) {
-                        return currentError.response.data;
-                    }
-                });
-            return response;
-        };
+        const resp =
+            profile.data !== undefined
+                ? async () => {
+                    const response = await instance
+                        .put(`/profiles/${userId}`, data, {
+                            headers: { Authorization: `Bearer ${token}` },
+                        })
+                        .catch(function (error) {
+                            const currentError = error as AxiosError;
+                            if (currentError.response) {
+                                return currentError.response.data;
+                            }
+                        });
+                    return response;
+                }
+                : async () => {
+                    const response = await instance
+                        .post('/profiles/', data, {
+                            headers: { Authorization: `Bearer ${token}` },
+                        })
+                        .catch(function (error) {
+                            const currentError = error as AxiosError;
+                            if (currentError.response) {
+                                return currentError.response.data;
+                            }
+                        });
+                    return response;
+                };
 
         const message = await resp();
         setProfile(message.data);
@@ -127,12 +149,12 @@ export const ProfileProvider = ({ children }: iChildren) => {
 
     const sendPostContact = async (dataContact: iDataContact) => {
         const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
 
         const contact = await sendGetContact();
 
         const data = {
-            id: 1,
-            profileId: contact.data.profileId,
+            profileId: Number(userId),
             phone: dataContact.tel,
             whatsapp: dataContact.whatsApp,
             instagram: dataContact.instagram,
@@ -140,52 +162,83 @@ export const ProfileProvider = ({ children }: iChildren) => {
             telegram: dataContact.telegram,
         };
 
-        const resp = async () => {
-            const response = await instance
-                .put('/contacts/1', data, {
-                    headers: { Authorization: `Bearer ${token}` },
-                })
-                .catch(function (error) {
-                    const currentError = error as AxiosError;
-                    if (currentError.response) {
-                        return currentError.response.data;
-                    }
-                });
-            return response;
-        };
+        const resp =
+            contact.data !== undefined
+                ? async () => {
+                    const response = await instance
+                        .put(`/contacts/${userId}`, data, {
+                            headers: { Authorization: `Bearer ${token}` },
+                        })
+                        .catch(function (error) {
+                            const currentError = error as AxiosError;
+                            if (currentError.response) {
+                                return currentError.response.data;
+                            }
+                        });
+                    return response;
+                }
+                : async () => {
+                    const response = await instance
+                        .post('/contacts', data, {
+                            headers: { Authorization: `Bearer ${token}` },
+                        })
+                        .catch(function (error) {
+                            const currentError = error as AxiosError;
+                            if (currentError.response) {
+                                return currentError.response.data;
+                            }
+                        });
+                    return response;
+                };
 
         const message = await resp();
         setContact(message.data);
+        return message;
     };
 
     const sendPostAndress = async (dataAndress: iDataAndress) => {
         const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
 
         const adresses = await sendGetAndress();
 
         const data = {
-            profileId: adresses.data.profileId,
+            profileId: Number(userId),
             street: dataAndress.street,
             district: dataAndress.district,
             number: dataAndress.number,
             city: dataAndress.city,
             state: dataAndress.state,
-            id: 1,
         };
 
-        const resp = async () => {
-            const response = await instance
-                .put('/adresses/1', data, {
-                    headers: { Authorization: `Bearer ${token}` },
-                })
-                .catch(function (error) {
-                    const currentError = error as AxiosError;
-                    if (currentError.response) {
-                        return currentError.response.data;
-                    }
-                });
-            return response;
-        };
+        const resp =
+            adresses.data !== undefined
+                ? async () => {
+                    const response = await instance
+                        .put(`/adresses/${userId}`, data, {
+                            headers: { Authorization: `Bearer ${token}` },
+                        })
+                        .catch(function (error) {
+                            const currentError = error as AxiosError;
+                            if (currentError.response) {
+                                return currentError.response.data;
+                            }
+                        });
+                    return response;
+                }
+                : async () => {
+                    const response = await instance
+                        .post('/adresses', data, {
+                            headers: { Authorization: `Bearer ${token}` },
+                        })
+                        .catch(function (error) {
+                            const currentError = error as AxiosError;
+                            if (currentError.response) {
+                                return currentError.response.data;
+                            }
+                        });
+                    return response;
+                };
 
         const message = await resp();
         return message;
