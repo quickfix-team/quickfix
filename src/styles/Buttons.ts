@@ -5,9 +5,12 @@ const DefaultButton = styled.button`
     background-color: var(--color-secondary);
 `;
 
-const EnableDisableButton = styled.button`
+export const EnableDisableButton = styled.button`
     padding: 0rem 3.375rem;
     height: 3.625rem;
+    background-color: ${props=>props.color};
+    font-weight: 600;
+    font-size: var(--font-size-3);
 `;
 
 export const ButtonPrimaryStyles = styled(DefaultButton)`
