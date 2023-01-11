@@ -11,10 +11,10 @@ import { ContainerGlobalStyles, ContainerPattern } from '../../styles/Containers
 import { ProfileStyles } from './style';
 
 export const Profile = () => {
-    const { contact, profile } = useContext(ProfileContext);
-
     const token = localStorage.getItem('userToken');
     if (!token) return <Navigate to='/login' replace />;
+
+    const { profile } = useContext(ProfileContext);
 
     return (
         <>
@@ -24,11 +24,18 @@ export const Profile = () => {
                     <section>
                         <div>
                             <div>
-                                <img src={profile.imagem} alt='img-profile' />
+                                <img
+                                    src={
+                                        profile !== undefined
+                                            ? profile.imagem
+                                            : 'https://i.ibb.co/VQnCcyz/log.png'
+                                    }
+                                    alt='img-profile'
+                                />
                             </div>
                             <div>
-                                <p>Nome: {profile.name}</p>
-                                <p>Email: {contact.email}</p>
+                                <p>Nome: exemploNome</p>
+                                <p>Email: exemplo@mail.com</p>
                                 <p>CNPJ: xx.xxx.xxx/0001-xx</p>
                             </div>
                         </div>

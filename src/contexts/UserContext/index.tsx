@@ -24,9 +24,6 @@ export const UserProvider = ({ children }: IUserProps) => {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
 
-    const token = localStorage.getItem('userToken');
-    if (token) return <Navigate to='/profile' replace />;
-
     const registerRequest = async (formData: IRegisterForm) => {
         try {
             await instance.post('/register', formData);
