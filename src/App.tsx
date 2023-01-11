@@ -6,6 +6,7 @@ import { MainRoutes as Routes } from './routes';
 import { LightTheme } from './themes/Light';
 
 import 'react-toastify/dist/ReactToastify.min.css';
+import { Modal } from './components/Modal';
 
 export const App = () => {
     return (
@@ -13,6 +14,7 @@ export const App = () => {
             <ThemeProvider theme={LightTheme}>
                 <UserProvider>
                     <Routes />
+                    <Modal />
                 </UserProvider>
             </ThemeProvider>
             <ToastContainer
