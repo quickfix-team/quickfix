@@ -10,11 +10,11 @@ export const Modal = () => {
     return showModal ? (
         <DivModal onClick={() => setShowModal(false)}>
             {token ? (
-                <div className='contentModal'>
+                <div>
                     <button onClick={() => logoutRequest()}>Logout</button>
                 </div>
             ) : (
-                <div className='contentModal'>
+                <div>
                     <Link to={'/home'}>Home</Link>
                     <Link to={'/login'}>Login</Link>
                     <Link to={'/register'}>Cadastrar</Link>

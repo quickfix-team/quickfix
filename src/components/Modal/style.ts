@@ -9,7 +9,7 @@ export const DivModal = styled.div`
     position: fixed;
     top: 0;
 
-    .contentModal {
+    div {
         display: flex;
         flex-direction: column;
         align-items: center;
