@@ -1,3 +1,4 @@
+import { Footer } from '../../components/Footer';
 import { FormLogin } from '../../components/Form/FormLogin';
 import { Header } from '../../components/Header';
 import { Link } from '../../styles/Buttons';
@@ -14,6 +15,7 @@ export const Login = () => {
                     <Link to='/register'>Ainda não possui registro?</Link>
                 </div>
             </FormCard>
+            <Footer />
         </>
     );
 };

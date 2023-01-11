@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-
+import { Footer } from '../../components/Footer';
 import { FormAddress } from '../../components/Form/FormAddress';
 import { FormContact } from '../../components/Form/FormContact';
 import { FormImgProfile } from '../../components/Form/FormImgProfile';
@@ -48,6 +48,7 @@ export const Profile = () => {
                     </section>
                 </ProfileStyles>
             </ContainerGlobalStyles>
+            <Footer />
         </>
     );
 };

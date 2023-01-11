@@ -1,3 +1,4 @@
+import { Footer } from '../../components/Footer';
 import { FormRegister } from '../../components/Form/FormRegister';
 import { Header } from '../../components/Header';
 import { Link } from '../../styles/Buttons';
@@ -14,6 +15,7 @@ export const Register = () => {
                     <Link to='/login'>Voltar para a página de login</Link>
                 </div>
             </FormCard>
+            <Footer />
         </>
     );
 };
