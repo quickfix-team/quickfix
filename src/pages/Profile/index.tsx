@@ -1,17 +1,20 @@
 import { useContext } from 'react';
+import { Navigate } from 'react-router';
 
 import { FormAddress } from '../../components/Form/FormAddress';
 import { FormContact } from '../../components/Form/FormContact';
 import { FormImgProfile } from '../../components/Form/FormImgProfile';
 import { Header } from '../../components/Header';
 import { ProfileContext } from '../../contexts/Profile';
-import { ButtonPrimaryStyles } from '../../styles/Buttons';
 import { EnableDisableButton } from '../../styles/Buttons';
 import { ContainerGlobalStyles, ContainerPattern } from '../../styles/Containers';
 import { ProfileStyles } from './style';
 
 export const Profile = () => {
     const { contact, profile } = useContext(ProfileContext);
+
+    const token = localStorage.getItem('userToken');
+    if (!token) return <Navigate to='/login' replace />;
 
     return (
         <>
