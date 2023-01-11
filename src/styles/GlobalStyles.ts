@@ -30,6 +30,7 @@ export const GlobalStyles = createGlobalStyle`
   
     body{
         font-family: 'Nunito', sans-serif;
+        background-color: var(--color-tertiary);
     }
   
 `;
