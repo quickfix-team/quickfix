@@ -1,3 +1,12 @@
+import { Search } from '../../components/Search';
+import { StyledDashBoard } from './style';
+
 export const Dashboard = () => {
-    return <></>;
+    return (
+        <>
+            <StyledDashBoard>
+                <Search />
+            </StyledDashBoard>
+        </>
+    );
 };
