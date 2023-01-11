@@ -8,7 +8,7 @@ import { ProfileContext } from '../../contexts/Profile';
 import { useContext } from 'react';
 
 export const Profile = () => {
-    const { contact, profile } = useContext(ProfileContext);
+    const { profile } = useContext(ProfileContext);
 
     return (
         <ContainerGlobalStyles>
@@ -16,11 +16,14 @@ export const Profile = () => {
                 <section>
                     <div>
                         <div>
-                            <img src={profile.imagem} alt='img-profile' />
+                            <img
+                                src={profile !== undefined ? profile.imagem : 'https://i.ibb.co/VQnCcyz/log.png'}
+                                alt='img-profile'
+                            />
                         </div>
                         <div>
-                            <p>Nome: {profile.name}</p>
-                            <p>Email: {contact.email}</p>
+                            <p>Nome: exemploNome</p>
+                            <p>Email: exemplo@mail.com</p>
                             <p>CNPJ: xx.xxx.xxx/0001-xx</p>
                         </div>
                     </div>
