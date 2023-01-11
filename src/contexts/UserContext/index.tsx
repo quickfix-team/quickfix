@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -13,12 +13,16 @@ interface IUserProps {
 interface IUserContext {
     registerRequest: (formData: IRegisterForm) => Promise<void>;
     loginRequest: (formData: ILoginForm) => Promise<void>;
+    logoutRequest: () => void;
+    showModal: boolean;
+    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProps) => {
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
 
     const registerRequest = async (formData: IRegisterForm) => {
         try {
@@ -36,10 +40,20 @@ export const UserProvider = ({ children }: IUserProps) => {
             toast.success('Login efetuado!');
             localStorage.clear();
             localStorage.setItem('userToken', data.accessToken);
+            localStorage.setItem('userId', data.user.id);
             navigate('/profile');
         } catch (err) {
             toast.error('Ops! Algo deu errado.');
         }
+    };
+
+    const logoutRequest = () => {
+        toast.success('Até logo!');
+        setShowModal(false);
+        setTimeout(() => {
+            localStorage.clear();
+            navigate('/home');
+        }, 2000);
     };
 
     return (
@@ -47,6 +61,9 @@ export const UserProvider = ({ children }: IUserProps) => {
             value={{
                 registerRequest,
                 loginRequest,
+                logoutRequest,
+                showModal,
+                setShowModal,
             }}
         >
             {children}

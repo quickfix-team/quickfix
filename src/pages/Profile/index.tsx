@@ -1,27 +1,47 @@
-import { ButtonPrimaryStyles } from '../../styles/Buttons';
+import { FormAddress } from '../../components/Form/FormAddress';
+import { FormContact } from '../../components/Form/FormContact';
+import { FormImgProfile } from '../../components/Form/FormImgProfile';
+import { ContainerPattern, ContainerGlobalStyles } from '../../styles/Containers';
 import { ProfileStyles } from './style';
+import { EnableDisableButton } from '../../styles/Buttons';
+import { ProfileContext } from '../../contexts/Profile';
+import { useContext } from 'react';
 
 export const Profile = () => {
+    const { contact, profile } = useContext(ProfileContext);
+
     return (
-        <ProfileStyles>
-            <section>
-                <div>
+        <ContainerGlobalStyles>
+            <ProfileStyles>
+                <section>
                     <div>
-                        <img
-                            src='https://cdn.pixabay.com/photo/2013/07/12/17/22/detective-152085_960_720.png'
-                            alt='img-profile'
-                        />
+                        <div>
+                            <img src={profile.imagem} alt='img-profile' />
+                        </div>
+                        <div>
+                            <p>Nome: {profile.name}</p>
+                            <p>Email: {contact.email}</p>
+                            <p>CNPJ: xx.xxx.xxx/0001-xx</p>
+                        </div>
                     </div>
+                    <FormImgProfile />
+                </section>
+                <section>
                     <div>
-                        <p>Nome: Conserta Smart</p>
-                        <p>Email: consertaSmart@gmail.com</p>
-                        <p>CNPJ: xx.xxx.xxx/0001-xx</p>
+                        <div>
+                            <ContainerPattern>
+                                <FormAddress />
+                            </ContainerPattern>
+                            <ContainerPattern>
+                                <FormContact />
+                            </ContainerPattern>
+                        </div>
+                        <EnableDisableButton color='var(--color-negative)'>
+                            Desativado
+                        </EnableDisableButton>
                     </div>
-                </div>
-                <form>
-                    <ButtonPrimaryStyles>Inserir Imagem</ButtonPrimaryStyles>
-                </form>
-            </section>
-        </ProfileStyles>
+                </section>
+            </ProfileStyles>
+        </ContainerGlobalStyles>
     );
 };
