@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Footer } from '../../components/Footer';
 
 import { Header } from '../../components/Header';
 import { ContainerPattern } from '../../styles/Containers';
@@ -30,6 +31,7 @@ export const Home = () => {
                         </ContainerPattern>
                     </Link>
                 </main>
+                <Footer />
             </StyledDiv>
         </>
     );
