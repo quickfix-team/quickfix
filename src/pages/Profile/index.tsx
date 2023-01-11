@@ -1,50 +1,57 @@
+import { useContext } from 'react';
+import { Navigate } from 'react-router';
+import { Footer } from '../../components/Footer';
 import { FormAddress } from '../../components/Form/FormAddress';
 import { FormContact } from '../../components/Form/FormContact';
 import { FormImgProfile } from '../../components/Form/FormImgProfile';
-import { ContainerPattern, ContainerGlobalStyles } from '../../styles/Containers';
-import { ProfileStyles } from './style';
-import { EnableDisableButton } from '../../styles/Buttons';
+import { Header } from '../../components/Header';
 import { ProfileContext } from '../../contexts/Profile';
-import { useContext } from 'react';
+import { EnableDisableButton } from '../../styles/Buttons';
+import { ContainerGlobalStyles, ContainerPattern } from '../../styles/Containers';
+import { ProfileStyles } from './style';
 
 export const Profile = () => {
-    const { profile } = useContext(ProfileContext);
+    const { contact, profile } = useContext(ProfileContext);
+
+    const token = localStorage.getItem('userToken');
+    if (!token) return <Navigate to='/login' replace />;
 
     return (
-        <ContainerGlobalStyles>
-            <ProfileStyles>
-                <section>
-                    <div>
+        <>
+            <Header />
+            <ContainerGlobalStyles>
+                <ProfileStyles>
+                    <section>
                         <div>
-                            <img
-                                src={profile !== undefined ? profile.imagem : 'https://i.ibb.co/VQnCcyz/log.png'}
-                                alt='img-profile'
-                            />
+                            <div>
+                                <img src={profile.imagem} alt='img-profile' />
+                            </div>
+                            <div>
+                                <p>Nome: {profile.name}</p>
+                                <p>Email: {contact.email}</p>
+                                <p>CNPJ: xx.xxx.xxx/0001-xx</p>
+                            </div>
                         </div>
+                        <FormImgProfile />
+                    </section>
+                    <section>
                         <div>
-                            <p>Nome: exemploNome</p>
-                            <p>Email: exemplo@mail.com</p>
-                            <p>CNPJ: xx.xxx.xxx/0001-xx</p>
+                            <div>
+                                <ContainerPattern>
+                                    <FormAddress />
+                                </ContainerPattern>
+                                <ContainerPattern>
+                                    <FormContact />
+                                </ContainerPattern>
+                            </div>
+                            <EnableDisableButton color='var(--color-negative)'>
+                                Desativado
+                            </EnableDisableButton>
                         </div>
-                    </div>
-                    <FormImgProfile />
-                </section>
-                <section>
-                    <div>
-                        <div>
-                            <ContainerPattern>
-                                <FormAddress />
-                            </ContainerPattern>
-                            <ContainerPattern>
-                                <FormContact />
-                            </ContainerPattern>
-                        </div>
-                        <EnableDisableButton color='var(--color-negative)'>
-                            Desativado
-                        </EnableDisableButton>
-                    </div>
-                </section>
-            </ProfileStyles>
-        </ContainerGlobalStyles>
+                    </section>
+                </ProfileStyles>
+            </ContainerGlobalStyles>
+            <Footer />
+        </>
     );
 };
