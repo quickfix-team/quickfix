@@ -53,8 +53,8 @@ export const ProfileProvider = ({ children }: iChildren) => {
             return response;
         };
 
-        const mensagem = await resp();
-        return mensagem;
+        const message = await resp();
+        return message;
     };
 
     const sendGetContact = async () => {
@@ -72,8 +72,8 @@ export const ProfileProvider = ({ children }: iChildren) => {
             return response;
         };
 
-        const mensagem = await resp();
-        return mensagem;
+        const message = await resp();
+        return message;
     };
 
     const sendGetAndress = async () => {
@@ -91,8 +91,8 @@ export const ProfileProvider = ({ children }: iChildren) => {
             return response;
         };
 
-        const mensagem = await resp();
-        return mensagem;
+        const message = await resp();
+        return message;
     };
 
     const sendPostImgProfile = async (src: string) => {
@@ -119,9 +119,9 @@ export const ProfileProvider = ({ children }: iChildren) => {
             return response;
         };
 
-        const mensagem = await resp();
-        setProfile(mensagem.data);
-        console.log(mensagem);
+        const message = await resp();
+        setProfile(message.data);
+        console.log(message);
     };
 
     const sendPostContact = async (dataContact: iDataContact) => {
@@ -153,9 +153,9 @@ export const ProfileProvider = ({ children }: iChildren) => {
             return response;
         };
 
-        const mensagem = await resp();
-        setContact(mensagem.data);
-        console.log(mensagem);
+        const message = await resp();
+        setContact(message.data);
+        console.log(message);
     };
 
     const sendPostAndress = async (dataAndress: iDataAndress) => {
@@ -187,8 +187,8 @@ export const ProfileProvider = ({ children }: iChildren) => {
             return response;
         };
 
-        const mensagem = await resp();
-        console.log(mensagem);
+        const message = await resp();
+        console.log(message);
     };
 
     const [profile, setProfile] = useState<Array<object>>([]);
