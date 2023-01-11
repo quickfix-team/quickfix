@@ -29,5 +29,15 @@ export const DivModal = styled.div`
                 opacity: 0.7;
             }
         }
+
+        button {
+            background: transparent;
+            color: var(--color-tertiary);
+            font-size: var(--font-size-3);
+
+            :hover {
+                opacity: 0.7;
+            }
+        }
     }
 `;
