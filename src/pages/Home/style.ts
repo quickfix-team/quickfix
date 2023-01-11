@@ -3,8 +3,10 @@ import styled from 'styled-components';
 export const StyledDiv = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     width: 100%;
+    height: 90vh;
 
     > main {
         display: flex;
@@ -13,6 +15,11 @@ export const StyledDiv = styled.div`
         width: 15rem;
         gap: 1rem;
         margin: 1.25rem 0;
+
+        @media (min-width: 768px) {
+            width: 20rem;
+            gap: 2rem;
+        }
     }
 
     > main > h1 {
@@ -22,13 +29,18 @@ export const StyledDiv = styled.div`
         width: 9.375rem;
         line-height: var(--line-height);
         text-align: center;
+        text-shadow: 0px 5px 4px rgba(0, 0, 0, 0.6);
+
+        @media (min-width: 768px) {
+            width: 100%;
+        }
     }
 
     > main > img {
         width: 9.375rem;
 
         @media (min-width: 768px) {
-            width: 15rem;
+            width: 20rem;
         }
     }
 
@@ -49,6 +61,7 @@ export const StyledDiv = styled.div`
         color: var(--color-tertiary);
         font-size: var(--font-size-3);
         line-height: var(--line-height);
+        padding: 5px;
         text-align: center;
     }
 
