@@ -15,7 +15,8 @@ const MenuProps = {
     },
 };
 
-const names = [
+const list = [
+    'selecionar cidade',
     'Oliver Hansen',
     'Van Henry',
     'April Tucker',
@@ -36,8 +37,8 @@ export const InputSelect = () => {
     };
     return (
         <StyledSelect>
-            <Select value={city} onChange={handleChange} MenuProps={MenuProps}>
-                {names.map((name) => (
+            <Select value={city ? city : list[0]} onChange={handleChange} MenuProps={MenuProps}>
+                {list.map((name) => (
                     <MenuItem
                         key={name}
                         value={name}
