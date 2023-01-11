@@ -4,7 +4,7 @@ import { StyledFooter } from './style';
 export const Footer = () => {
     return (
         <StyledFooter>
-            <span>© Copyright 2023 - CellTechAss</span>
+            <span>© Copyright 2023 - QuickFix</span>
         </StyledFooter>
     );
 };
