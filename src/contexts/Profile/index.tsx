@@ -153,7 +153,6 @@ export const ProfileProvider = ({ children }: iChildren) => {
         const contact = await sendGetContact();
 
         const data = {
-            id: Number(userId),
             profileId: Number(userId),
             phone: dataContact.tel,
             whatsapp: dataContact.whatsApp,
@@ -209,7 +208,6 @@ export const ProfileProvider = ({ children }: iChildren) => {
             number: dataAndress.number,
             city: dataAndress.city,
             state: dataAndress.state,
-            id: Number(userId),
         };
 
         const resp =
