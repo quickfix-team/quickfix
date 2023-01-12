@@ -40,7 +40,7 @@ export const UserProvider = ({ children }: IUserProps) => {
             toast.success('Login efetuado!');
             localStorage.clear();
             localStorage.setItem('userToken', data.accessToken);
-            localStorage.setItem('userId', data.user.id);
+            localStorage.setItem('userId', JSON.stringify(data.user));
             navigate('/profile');
         } catch (err) {
             toast.error('Ops! Algo deu errado.');
