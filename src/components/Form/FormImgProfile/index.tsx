@@ -31,7 +31,7 @@ export const FormImgProfile = () => {
             <ContainerPattern>
                 <TextField
                     type='text'
-                    label='WhatsApp:'
+                    label='Link:'
                     variant='standard'
                     size='small'
                     fullWidth
