@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import AxiosError from 'axios-error';
 import { instance } from '../../services';
+import { toast } from 'react-toastify';
 
 interface iChildren {
     children: React.ReactNode;
@@ -40,11 +41,12 @@ export const ProfileContext = createContext({} as iDatas);
 export const ProfileProvider = ({ children }: iChildren) => {
     const sendGetProfile = async () => {
         const token = localStorage.getItem('token');
-        const userId = localStorage.getItem('userId');
+        let userId = localStorage.getItem('userId');
+        userId = JSON.parse(userId);
 
         const resp = async () => {
             const response = await instance
-                .get(`/profiles/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
+                .get(`/profiles/${userId.id}`, { headers: { Authorization: `Bearer ${token}` } })
                 .catch(function (error) {
                     const currentError = error as AxiosError;
                     if (currentError.response) {
@@ -61,11 +63,12 @@ export const ProfileProvider = ({ children }: iChildren) => {
     const sendGetContact = async () => {
         const token = localStorage.getItem('token');
 
-        const userId = localStorage.getItem('userId');
+        let userId = localStorage.getItem('userId');
+        userId = JSON.parse(userId);
 
         const resp = async () => {
             const response = await instance
-                .get(`/contacts/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
+                .get(`/contacts/${userId.id}`, { headers: { Authorization: `Bearer ${token}` } })
                 .catch(function (error) {
                     const currentError = error as AxiosError;
                     if (currentError.response) {
@@ -82,11 +85,12 @@ export const ProfileProvider = ({ children }: iChildren) => {
     const sendGetAndress = async () => {
         const token = localStorage.getItem('token');
 
-        const userId = localStorage.getItem('userId');
+        let userId = localStorage.getItem('userId');
+        userId = JSON.parse(userId);
 
         const resp = async () => {
             const response = await instance
-                .get(`/adresses/${userId}`, { headers: { Authorization: `Bearer ${token}` } })
+                .get(`/adresses/${userId.id}`, { headers: { Authorization: `Bearer ${token}` } })
                 .catch(function (error) {
                     const currentError = error as AxiosError;
                     if (currentError.response) {
@@ -102,13 +106,14 @@ export const ProfileProvider = ({ children }: iChildren) => {
 
     const sendPostImgProfile = async (src: string) => {
         const token = localStorage.getItem('token');
-        const userId = localStorage.getItem('userId');
+        let user = localStorage.getItem('userId');
+        user = JSON.parse(user);
 
         const profile = await sendGetProfile();
 
         const data = {
-            userId: userId,
-            name: profile.name,
+            userId: user.id,
+            name: user.name,
             imagem: src,
         };
 
@@ -116,12 +121,13 @@ export const ProfileProvider = ({ children }: iChildren) => {
             profile.data !== undefined
                 ? async () => {
                     const response = await instance
-                        .put(`/profiles/${userId}`, data, {
+                        .put(`/profiles/${user.id}`, data, {
                             headers: { Authorization: `Bearer ${token}` },
                         })
                         .catch(function (error) {
                             const currentError = error as AxiosError;
                             if (currentError.response) {
+                                toast.error('Ops! Algo deu errado.');
                                 return currentError.response.data;
                             }
                         });
@@ -135,6 +141,7 @@ export const ProfileProvider = ({ children }: iChildren) => {
                         .catch(function (error) {
                             const currentError = error as AxiosError;
                             if (currentError.response) {
+                                toast.error('Ops! Algo deu errado.');
                                 return currentError.response.data;
                             }
                         });
@@ -143,17 +150,19 @@ export const ProfileProvider = ({ children }: iChildren) => {
 
         const message = await resp();
         setProfile(message.data);
+        toast.success('Imagem adicionada com sucesso!');
         return message;
     };
 
     const sendPostContact = async (dataContact: iDataContact) => {
         const token = localStorage.getItem('token');
-        const userId = localStorage.getItem('userId');
+        let user = localStorage.getItem('userId');
+        user = JSON.parse(user);
 
         const contact = await sendGetContact();
 
         const data = {
-            profileId: Number(userId),
+            profileId: Number(user.id),
             phone: dataContact.tel,
             whatsapp: dataContact.whatsApp,
             instagram: dataContact.instagram,
@@ -165,12 +174,13 @@ export const ProfileProvider = ({ children }: iChildren) => {
             contact.data !== undefined
                 ? async () => {
                     const response = await instance
-                        .put(`/contacts/${userId}`, data, {
+                        .put(`/contacts/${user.id}`, data, {
                             headers: { Authorization: `Bearer ${token}` },
                         })
                         .catch(function (error) {
                             const currentError = error as AxiosError;
                             if (currentError.response) {
+                                toast.error('Ops! Algo deu errado.')
                                 return currentError.response.data;
                             }
                         });
@@ -184,6 +194,7 @@ export const ProfileProvider = ({ children }: iChildren) => {
                         .catch(function (error) {
                             const currentError = error as AxiosError;
                             if (currentError.response) {
+                                toast.error('Ops! Algo deu errado.')
                                 return currentError.response.data;
                             }
                         });
@@ -192,17 +203,19 @@ export const ProfileProvider = ({ children }: iChildren) => {
 
         const message = await resp();
         setContact(message.data);
+        toast.success('Meios de contato adicionado com sucesso!');
         return message;
     };
 
     const sendPostAndress = async (dataAndress: iDataAndress) => {
         const token = localStorage.getItem('token');
-        const userId = localStorage.getItem('userId');
+        let user = localStorage.getItem('userId');
+        user = JSON.parse(user);
 
         const adresses = await sendGetAndress();
 
         const data = {
-            profileId: Number(userId),
+            profileId: Number(user.id),
             street: dataAndress.street,
             district: dataAndress.district,
             number: dataAndress.number,
@@ -214,12 +227,13 @@ export const ProfileProvider = ({ children }: iChildren) => {
             adresses.data !== undefined
                 ? async () => {
                     const response = await instance
-                        .put(`/adresses/${userId}`, data, {
+                        .put(`/adresses/${user.id}`, data, {
                             headers: { Authorization: `Bearer ${token}` },
                         })
                         .catch(function (error) {
                             const currentError = error as AxiosError;
                             if (currentError.response) {
+                                toast.error('Ops! Algo deu errado.')
                                 return currentError.response.data;
                             }
                         });
@@ -233,6 +247,7 @@ export const ProfileProvider = ({ children }: iChildren) => {
                         .catch(function (error) {
                             const currentError = error as AxiosError;
                             if (currentError.response) {
+                                toast.error('Ops! Algo deu errado.')
                                 return currentError.response.data;
                             }
                         });
@@ -240,6 +255,7 @@ export const ProfileProvider = ({ children }: iChildren) => {
                 };
 
         const message = await resp();
+        toast.success('Endereço adicionado com sucesso!');
         return message;
     };
 
