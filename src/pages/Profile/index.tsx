@@ -6,14 +6,20 @@ import { FormContact } from '../../components/Form/FormContact';
 import { FormImgProfile } from '../../components/Form/FormImgProfile';
 import { Header } from '../../components/Header';
 import { ProfileContext } from '../../contexts/Profile';
-import { EnableDisableButton } from '../../styles/Buttons';
 import { ContainerGlobalStyles, ContainerPattern } from '../../styles/Containers';
 import { ProfileStyles } from './style';
 
+interface iProfile{
+    email: string;
+    name: string;
+    cnpj: string;
+    id: number;
+}
+
 export const Profile = () => {
     const token = localStorage.getItem('userToken');
-    let user = localStorage.getItem('userId');
-    user = JSON.parse(user);
+    const userId: string | null = localStorage.getItem('userId');
+    const user: iProfile = JSON.parse(String(userId));
 
     if (!token) return <Navigate to='/login' replace />;
 
