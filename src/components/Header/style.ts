@@ -11,14 +11,13 @@ export const StyledNavBar = styled.nav`
     align-items: center;
     justify-content: space-between;
 
-    > div {
-        display: flex;
-        align-items: center;
+    > img {
+        width: 130px;
+    }
 
-        h1 {
-            font-family: 'Odibee Sans', cursive;
-            font-size: var(--font-size-2);
-            color: #ffffff;
+    @media (max-width: 900px) {
+        > img {
+            width: 90px;
         }
     }
 `;
