@@ -31,8 +31,14 @@ export const GlobalStyles = createGlobalStyle`
     body{
         font-family: 'Nunito', sans-serif;
         background-color: var(--color-tertiary);
-        position: relative;
-        height: 100vh;
+    }
+
+    #root{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
     }
   
 `;

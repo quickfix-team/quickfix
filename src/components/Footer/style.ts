@@ -10,9 +10,6 @@ export const StyledFooter = styled.footer`
 
     background: var(--color-primary);
 
-    position: absolute;
-    bottom: 0;
-
     text-align: center;
 
     @media (max-width: 900px) {
