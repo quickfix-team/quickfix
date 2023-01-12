@@ -12,6 +12,9 @@ import { ProfileStyles } from './style';
 
 export const Profile = () => {
     const token = localStorage.getItem('userToken');
+    let user = localStorage.getItem('userId');
+    user = JSON.parse(user);
+
     if (!token) return <Navigate to='/login' replace />;
 
     const { profile } = useContext(ProfileContext);
@@ -34,9 +37,9 @@ export const Profile = () => {
                                 />
                             </div>
                             <div>
-                                <p>Nome: exemploNome</p>
-                                <p>Email: exemplo@mail.com</p>
-                                <p>CNPJ: xx.xxx.xxx/0001-xx</p>
+                                <p>Nome: {user.name}</p>
+                                <p>Email: {user.email}</p>
+                                <p>CNPJ: {user.cnpj}</p>
                             </div>
                         </div>
                         <FormImgProfile />
@@ -51,9 +54,6 @@ export const Profile = () => {
                                     <FormContact />
                                 </ContainerPattern>
                             </div>
-                            <EnableDisableButton color='var(--color-negative)'>
-                                Desativado
-                            </EnableDisableButton>
                         </div>
                     </section>
                 </ProfileStyles>
