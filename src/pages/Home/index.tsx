@@ -4,8 +4,13 @@ import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
 import { ContainerPattern } from '../../styles/Containers';
 import { StyledDiv } from './style';
+import { Navigate } from 'react-router';
 
 export const Home = () => {
+
+    const token = localStorage.getItem('userToken');
+    if (token) return <Navigate to='/profile' replace />;
+
     return (
         <>
             <Header />
